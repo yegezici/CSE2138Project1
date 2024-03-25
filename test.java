@@ -7,7 +7,7 @@ public class test {
 
         }*/
 
-        fDecToBi("243.76");
+        fDecToBi("29.109375");
 
         /*String number = "12005";
         System.out.println(number + " -> " + decToBi(number));
@@ -106,16 +106,19 @@ public class test {
         for(int i = 0;i < length;i++){
             if(floatNum.charAt(i) == '.'){
                 tempStr = floatNum.substring(0, i);
-                tempStr2 = "0." + floatNum.substring(i+1,length);
+                tempStr2 = "0." +  floatNum.substring(i+1,length);
                 break;
             }
         }
-
-
+        
+        //bence exponent bu yolla daha kolay bulunur gibi geldi
+        exponent += decToBi(tempStr).length() - 1;
         tempF = Float.parseFloat(tempStr2);
+        
         tempStr2 = "";
         for(int j = 0;j < 23;j++){
             tempF *= 2;
+           
             if(tempF >= 1.0){
                 tempStr2 += '1';
                 tempF -= 1.0;
@@ -124,12 +127,13 @@ public class test {
                 tempStr2 += '0';
             }
         }
-        for(int i = 0;i < decToBi(tempStr).length();i++){
+       //bu da efenin exponent algoritması (koydum bu arada)
+       /*  for(int i = 0;i < decToBi(tempStr).length();i++){
             if(decToBi(tempStr).charAt(i) == '1'){
                 exponent += ((decToBi(tempStr).length())-1-i);
                 break;
             }
-        }
+        }*/
         tempStr = "0 " + decToBi(exponent + "") + " " + decToBi(tempStr).substring(1) + tempStr2;
         //System.out.print(decToBi(tempStr) + ".");
         System.out.println(exponent);
