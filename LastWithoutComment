@@ -25,6 +25,7 @@ public class sys2 {
 	static String floatToBin(String floatNum,int floatSize) {
 		int fractionSize=0;
 		int exponent = 0;
+		//this part is for byte size
 		switch(floatSize) {
 		case 1:
 			fractionSize=4;
@@ -43,11 +44,13 @@ public class sys2 {
 			exponent=2047;
 			break;
 		}
-		boolean negative = false;
+	//to determine if the given input is ngative or not
+	boolean negative = false;
         if(floatNum.charAt(0) == '-'){
             negative = true;
             floatNum = floatNum.substring(1);
         }
+	//this part divides the input into two from the floating point
         String result = "";
         int length = floatNum.length();
         String tempStr = "";
@@ -61,7 +64,7 @@ public class sys2 {
             }
         }
 
-
+	//this part converts after the floating point
         tempF = Float.parseFloat(tempStr2);
         tempStr2 = "";
         int j=0;
@@ -75,24 +78,22 @@ public class sys2 {
                 tempStr2 += '0';
             }
         }
-        if(tempStr2.charAt(fractionSize)==1) {
-        	
-        }else {
-        	tempStr2.substring(0, fractionSize);
-        }
-        
+
+        //this part calculates the exponent
         for(int i = 0;i < intToBin(tempStr).length();i++){
             if(intToBin(tempStr).charAt(i) == '1'){
                 exponent += ((intToBin(tempStr).length())-1-i);
                 break;
             }
         }
+
+	//this part is for rounding
         String fraction = intToBin(tempStr).substring(1) + tempStr2.substring(0,fractionSize);
         if(fraction.charAt(fractionSize)=='0') {
         	fraction = fraction.substring(0,fractionSize);
         }else {
         	String finalBin = "";
-            for(int i = fractionSize;i >= 0;i--){////////////////////////////////////7
+            for(int i = fractionSize;i >= 0;i--){
                 if(fraction.charAt(i) == '0'){
                     finalBin = fraction.substring(0, i) + '1' + finalBin;
                     break;
@@ -117,6 +118,8 @@ public class sys2 {
         result = tempStr;
         return result;
 	}
+
+
 	// This method takes unsigned number and converts it to binary.
 	static String unsignedToBin(String num) {
         num = num.substring(0,num.length()-1);
@@ -139,6 +142,8 @@ public class sys2 {
         result = result.substring(1);
         return result;
 	}
+
+
 	// This method takes decimal number and converts it to binary.
     public static String decToBi(String num){
         boolean negative=false;
@@ -163,7 +168,8 @@ public class sys2 {
             result = '0' + result;
         }
         result = result.substring(1);
-
+	
+	//this part of the code converts the number to two's complement representation if the number is negative
         if(negative){
             String negativeString= "";
             for(int i = 0;i < result.length();i++){
@@ -189,16 +195,6 @@ public class sys2 {
         
         return result;
     }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
  // This method takes binary number and converts it to hexadecimal.
@@ -236,7 +232,7 @@ public class sys2 {
 		Scanner inputLine = new Scanner(System.in);
 // Next two line takes file name from user.
 		System.out.print("Enter file name:");
-		String inputFileName=input.next()+".txt";
+		String inputFileName=input.next();
 		// Next three line asks to user whether little or big endian will be used.
 		System.out.print("Enter byte ordering type(Little Endian or Big Endian):");
 		String byteOrderingType=inputLine.nextLine();
