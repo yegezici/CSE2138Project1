@@ -222,8 +222,8 @@ public class sys2 {
 			}
 			
 		}
-		if(length%8<4)
-			currentString="0"+currentString;
+		/*if(length%8<4)
+			currentString="0"+currentString;*/
 		if(shouldConvert) {
 			for(int a=currentString.length()-2;a>-1;a-=2) {
 				converted+=(char)currentString.charAt(a)+""+(char)currentString.charAt(a+1);
